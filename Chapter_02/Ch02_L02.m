@@ -17,10 +17,10 @@ clc; close all; clear all; format long; format compact;
 
 % Given situational variables
 Vc = 4000;
-nT = 0;
+nT = 0;         % nT =32.2*3;   %<-- UNCOMMENT FOR 3G MANUEVER, ONLY
 Y  = 0;
 Vm = 3000;
-HEDEG = -20;
+HEDEG = -20;    % HEDEG = 0;    %<-- UNCOMMENT FOR 3G MANUEVER, ONLY
 Tf = 10;
 N  = 4; 
 dY = -Vm * deg2rad(HEDEG);% initial sideways velocity due to heading error
@@ -49,7 +49,7 @@ while T <= Tf-1e-5 % prevent catastrophic cancellation
         dLAM= (dY*TGO + Y)/(Vc*TGO*TGO);
         nc  = N*Vc*dLAM; % proportional navigation law
         ddY = nT-nc;
-        FLAG= 1;
+        FLAG = 1;
     end
     FLAG = 0;
     % 2nd order RK
@@ -70,3 +70,4 @@ figure(1);
 plot(array_T,array_nc_g); grid on;
 xlabel('Time [s]');
 ylabel('Missile Acceleration [G]');
+%xlim([0 9]);                   %<-- UNCOMMENT FOR 3G MANUEVER, ONLY
