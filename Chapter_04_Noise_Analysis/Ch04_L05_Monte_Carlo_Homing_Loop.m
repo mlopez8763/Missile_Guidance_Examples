@@ -29,10 +29,10 @@ for TF = 1:10
             COEF = -1;
         end
         Y = 0;
-        YD= 0;
+        dY= 0;
         T = 0;
         h = 0.01;
-        S = 0
+        S = 0;
         NC= 0;  % missile commanded acceleration
         NL= 0;  % missile achieved acceleration
         % Begin Monte Carlo simulations per each flight time
@@ -47,7 +47,7 @@ for TF = 1:10
             NL_OLD= NL;
             STEP = 1;
             FLAG = 0;
-            while step <= 1
+            while STEP <= 1
                 if FLAG == 1
                     % Forward Euler
                     Y = Y + h*dY;
@@ -93,7 +93,7 @@ for TF = 1:10
 end
 % Plot results
 figure(1);
-plot(array_TF, array_SIGMA, 'r+');
+plot(array_TF, array_SIGMA, 'r+'); grid on;
 title('Shaping filter Monte Carlo results')
 xlabel('Time')
 ylabel('Standard Deviation / Mean')
